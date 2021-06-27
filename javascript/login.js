@@ -3,7 +3,7 @@ import * as Vue from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.9/vue.esm-b
 const RunLogin = {
   data() {
     return {
-      apiUrl: "https://vue3-course-api.hexschool.io",
+      baseURL: "https://vue3-course-api.hexschool.io",
       userInfo: { username: "", password: "" },
     };
   },
@@ -11,7 +11,7 @@ const RunLogin = {
     login() {
       console.log("login", this.userInfo.username, this.userInfo.password);
 
-      const loginUrl = `${this.apiUrl}/admin/signin`;
+      const loginUrl = `${this.baseURL}/admin/signin`;
       axios
         .post(loginUrl, this.userInfo)
         .then((response) => {
@@ -22,9 +22,6 @@ const RunLogin = {
             const { expired, token } = response.data;
             document.cookie = `hexToken = ${token}`;
             document.cookie = `expires = ${expired}`;
-
-            // set token for axios
-            axios.defaults.headers.common["Authorization"] = token;
 
             checkLoginStatus(token);
             redirectPage("items.html");
