@@ -9,19 +9,23 @@ const itemApp = {
       itemList: [],
     };
   },
-  methods: {},
+  methods: {
+		
+	},
   created() {
     // set token for axios
     const token = document.cookie.split(";")[0].split("=")[1];
-    console.log("token", token);
     axios.defaults.headers.common["Authorization"] = token;
 
-    //   `${BASE_URL}/api/${API_PATH}/admin/products`;
+    // get all items
     axios
       .get(`${this.baseURL}/api/${this.apiPath}/admin/products?page=1`)
       .then((res) => {
         if (res.data.success) {
           console.log("all items:", res);
+          this.itemList = [...res.data.products];
+
+					// console.log("===>itemList:", this);
         } else {
           alert("Failed to get item list");
         }
