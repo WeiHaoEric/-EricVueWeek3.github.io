@@ -12,7 +12,10 @@ const itemApp = {
   methods: {
     addNewItem() {console.log("add new item!")},
     editItem() {console.log("edit item!")},
-    delItem() {console.log("delete item!")},
+    delItem(delId) {
+			console.log("delete item!", delId);
+			this.itemList = this.itemList.filter(({id})=>id!==delId);
+		},
   },
   created() {
     // set token for axios

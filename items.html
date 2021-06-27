@@ -43,19 +43,19 @@
             </thead>
             <tbody>
               <tr v-for="(item, idx) in itemList">
-                <td>{{item.category}}</td>
-                <td>{{item.title}}</td>
-                <td>{{item.origin_price}}</td>
-                <td>{{item.price}}</td>
-                <td>
+                <td :key="category-idx">{{item.category}}</td>
+                <td :key="title-idx">{{item.title}}</td>
+                <td :key="origin_price-idx">{{item.origin_price}}</td>
+                <td :key="price-idx">{{item.price}}</td>
+                <td :key="is_enabled-idx">
                   <span v-if="item.is_enabled">啟用</span>
                   <span v-else>未啟用</span>
                 </td>
-                <td>
+                <td :key="action-btn-idx">
                   <button type="button" id="btn-edit" @click="editItem" style="color: blue">
                     編輯
                   </button">
-                  <button type="button" id="btn-delete" @click="delItem" style="color: red">
+                  <button type="button" id="btn-delete" @click="delItem(item.id)" style="color: red">
                     刪除
                   </button">
                 </td>
