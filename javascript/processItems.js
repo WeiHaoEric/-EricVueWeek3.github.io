@@ -10,8 +10,10 @@ const itemApp = {
     };
   },
   methods: {
-		
-	},
+    addNewItem() {console.log("add new item!")},
+    editItem() {console.log("edit item!")},
+    delItem() {console.log("delete item!")},
+  },
   created() {
     // set token for axios
     const token = document.cookie.split(";")[0].split("=")[1];
@@ -25,7 +27,7 @@ const itemApp = {
           console.log("all items:", res);
           this.itemList = [...res.data.products];
 
-					// console.log("===>itemList:", this);
+          // console.log("===>itemList:", this);
         } else {
           alert("Failed to get item list");
         }
