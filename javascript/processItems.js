@@ -10,12 +10,30 @@ const itemApp = {
     };
   },
   methods: {
-    addNewItem() {console.log("add new item!")},
-    editItem() {console.log("edit item!")},
+    addNewItem() {
+      console.log("add new item!");
+    },
+    editItem() {
+      console.log("edit item!");
+    },
     delItem(delId) {
-			console.log("delete item!", delId);
-			this.itemList = this.itemList.filter(({id})=>id!==delId);
-		},
+      console.log("delete item!", delId);
+      this.itemList = this.itemList.filter(({ id }) => id !== delId);
+
+      
+      axios
+        .delete(
+					// /api/:api_path/admin/product/:product_id
+          `${this.baseURL}/api/${this.apiPath}/admin/product/${delId}`
+        )
+        .then((res) => {
+          if (res.data.success) alert(`successful delete item: ${delId}`);
+          else alert(`failed to delete item: ${delId}`);
+        })
+        .catch((rej) => {
+          alert(`Error:${rej}`);
+        });
+    },
   },
   created() {
     // set token for axios
