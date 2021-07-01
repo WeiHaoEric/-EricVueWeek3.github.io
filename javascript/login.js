@@ -9,8 +9,6 @@ const RunLogin = {
   },
   methods: {
     login() {
-      console.log("login", this.userInfo.username, this.userInfo.password);
-
       const loginUrl = `${this.baseURL}/admin/signin`;
       axios
         .post(loginUrl, this.userInfo)
